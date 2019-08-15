@@ -9,7 +9,11 @@ stages:
   - publishImageConfig:
       dockerfilePath: ./Dockerfile
       buildContext: .
-      tag: eto/app:${CICD_EXECUTION_SEQUENCE}
+      tag: super-demo:${CICD_EXECUTION_SEQUENCE}
       registry: 127.0.0.1:34687
+- name: Deploy
+  steps:
+  - applyYamlConfig:
+      path: ./deployment.yaml
 timeout: 60
 notification: {}
