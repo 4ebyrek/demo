@@ -9,7 +9,7 @@ stages:
   - publishImageConfig:
       dockerfilePath: ./Dockerfile
       buildContext: .
-      tag: eto/app:v1
+      tag: eto/app:${CICD_EXECUTION_SEQUENCE}
       registry: 127.0.0.1:34687
 timeout: 60
 notification: {}
