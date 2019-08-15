@@ -1,0 +1,36 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: superdemo-service
+spec:
+  selector:
+    app: superdemo
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: super-demo
+  labels:
+    app: superdemo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: superdemo
+  template:
+    metadata:
+      labels:
+        app: superdemo
+    spec:
+      imagePullSecrets:
+      - name: docker-registry-d6dd9d9c8-6dzqc
+      containers:
+      - name: springboot
+        image: ${CICD_IMAGE}:${CICD_EXECUTION_SEQUENCE}
+        ports:
+        - containerPort: 8080
