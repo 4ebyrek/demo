@@ -28,7 +28,7 @@ spec:
         app: superdemo
     spec:
       imagePullSecrets:
-      - name: docker-registry-d6dd9d9c8-6dzqc
+      - name: docker-registry
       containers:
       - name: springboot
         image: ${CICD_IMAGE}:${CICD_EXECUTION_SEQUENCE}
